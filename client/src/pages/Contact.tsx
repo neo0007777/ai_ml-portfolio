@@ -127,8 +127,8 @@ export default function Contact() {
                 <h3 className="text-lg font-semibold mb-6">Quick Links</h3>
                 <div className="space-y-3">
                   <a
-                    href="/Shiva_resume_updated (1).pdf"
-                    download="Shiva_resume_updated (1).pdf"
+                    href="/Shiva_Resume.pdf"
+                    download="Shiva_Resume.pdf"
                     className="block text-foreground/80 hover:text-orange-500 transition-colors text-sm"
                   >
                     Download Resume

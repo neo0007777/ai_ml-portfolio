@@ -54,8 +54,8 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <a
-                  href="/Shiva_resume_updated (1).pdf"
-                  download="Shiva_resume_updated (1).pdf"
+                  href="/Shiva_Resume.pdf"
+                  download="Shiva_Resume.pdf"
                   className="text-white/60 hover:text-white transition-colors text-sm"
                 >
                   Resume
