@@ -1,11 +1,43 @@
+import { useEffect, useRef, useState } from "react";
 import Navigation from "@/components/Navigation";
+import RevealLayer from "@/components/RevealLayer";
 import { Github, Linkedin, Mail, Code2 } from "lucide-react";
 
+const BG_IMAGE_1 = "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260609_195923_b0ba8ace-1d1d-4f2c-9a28-1ab84b330680.png&w=1280&q=85";
 const BG_IMAGE_2 = "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260609_201152_bba90a12-bf12-459f-91f0-51f237dbaf3b.png&w=1280&q=85";
 
 export default function Home() {
+  const mouseRef = useRef<{ x: number; y: number }>({ x: -999, y: -999 });
+  const smoothRef = useRef<{ x: number; y: number }>({ x: -999, y: -999 });
+  const rafRef = useRef<number | undefined>(undefined);
+  const [cursorPos, setCursorPos] = useState({ x: -999, y: -999 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseRef.current.x = e.clientX;
+      mouseRef.current.y = e.clientY;
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    // RAF loop for smooth cursor tracking lerp
+    const animate = () => {
+      smoothRef.current.x += (mouseRef.current.x - smoothRef.current.x) * 0.1;
+      smoothRef.current.y += (mouseRef.current.y - smoothRef.current.y) * 0.1;
+      setCursorPos({ x: smoothRef.current.x, y: smoothRef.current.y });
+      rafRef.current = requestAnimationFrame(animate);
+    };
+
+    rafRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      if (rafRef.current !== undefined) cancelAnimationFrame(rafRef.current);
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: "'Inter', sans-serif" }}>
+    <div className="min-h-screen bg-white tracking-[-0.02em]" style={{ fontFamily: "'Inter', sans-serif" }}>
       <Navigation />
 
       {/* Hero Section */}
@@ -17,9 +49,12 @@ export default function Home() {
         <div
           className="absolute inset-0 bg-center bg-cover bg-no-repeat z-10 hero-zoom"
           style={{
-            backgroundImage: `url(${BG_IMAGE_2})`,
+            backgroundImage: `url(${BG_IMAGE_1})`,
           }}
         />
+
+        {/* Reveal Layer with Cursor Spotlight */}
+        <RevealLayer image={BG_IMAGE_2} cursorX={cursorPos.x} cursorY={cursorPos.y} />
 
         {/* Heading */}
         <div className="absolute top-[18%] left-0 right-0 flex flex-col items-center text-center px-5 pointer-events-none z-50">
@@ -72,14 +107,6 @@ export default function Home() {
           >
             Explore Projects →
           </a>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="scroll-indicator z-50 flex flex-col items-center gap-1 pointer-events-none">
-          <span className="text-[10px] font-mono tracking-widest text-white/40 uppercase">Scroll</span>
-          <svg width="16" height="20" viewBox="0 0 16 20" fill="none" className="text-white/30">
-            <path d="M8 0v16M1 9l7 7 7-7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
         </div>
 
         {/* Social Icons - Bottom Center */}
