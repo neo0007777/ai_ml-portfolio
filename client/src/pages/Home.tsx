@@ -74,14 +74,6 @@ export default function Home() {
           </a>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="scroll-indicator z-50 flex flex-col items-center gap-1 pointer-events-none">
-          <span className="text-[10px] font-mono tracking-widest text-white/40 uppercase">Scroll</span>
-          <svg width="16" height="20" viewBox="0 0 16 20" fill="none" className="text-white/30">
-            <path d="M8 0v16M1 9l7 7 7-7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </div>
-
         {/* Social Icons - Bottom Center */}
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-4 z-50 hero-anim hero-fade" style={{ animationDelay: "1s" }}>
           <a
