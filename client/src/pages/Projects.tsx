@@ -40,6 +40,17 @@ export default function Projects() {
   const projects: Project[] = [
     {
       id: "1",
+      title: "Relay",
+      category: "Agentic AI & Middleware",
+      description: "Context-Handoff Protocol & AI Agent Middleware engineered for autonomous AI coding agents.",
+      problem: "Autonomous AI coding agents (Claude Code, OpenHands, Aider) suffer from context window exhaustion and state degradation across multi-file engineering tasks, causing repeated code patch failures.",
+      solution: "Implemented Structured Knowledge Checkpoints and a novel 'Why-NOT' Dead-End Memory Store, preventing fresh agent instances from repeating previously failed code patches and reducing dead-end retries to 0.00 (p = 0.0001). Built a Multi-Signal Hybrid Reranker integrating Qdrant dense vector embeddings with AST topological proximity and edit recency scoring for sub-5ms JIT context retrieval. Designed RelayBench v2, an autonomous 288-run live agent evaluation suite across 32 repository tasks with 100% pytest verification coverage (50/50 tests passing).",
+      tags: ["Agentic AI", "Middleware", "LangGraph", "Qdrant"],
+      techStack: ["Python", "LangGraph", "FastAPI", "Qdrant", "Next.js", "Docker"],
+      github: "https://github.com/neo0007777/relay",
+    },
+    {
+      id: "2",
       title: "FarmSathi",
       category: "AgriTech & GenAI",
       description: "AI-powered agricultural advisory platform delivering trustworthy data to smallholder farmers.",
@@ -50,7 +61,7 @@ export default function Projects() {
       github: "https://github.com/neo0007777/FarmSathi",
     },
     {
-      id: "2",
+      id: "3",
       title: "NyayaSetu",
       category: "LegalTech & RAG",
       description: "AI-powered legal assistant with citation-grounded retrieval and automated document drafting.",
